@@ -4,13 +4,48 @@ In this challenge, we are given a series of zip files, each protected by a passw
 
 ## Problem Description
 
-The challenge consists of several levels, each of which provides a text file, `lvl_<level>.txt` and a zip file `lvl_<level>.zip` containing the next Sudoku puzzle to solve. The puzzle is a grid of cells, and each cell contains a variable `n_<r>_<c>`, where `r` is the row index and `c` is the column index. The goal is to determine the values of these variables that satisfy certain constraints. Once we have the correct sudoku values, we can use them as the password to extract the contents of the corresponding zip file for that level. The last zip file should contains `flag.txt`
+The challenge consists of several levels, each of which provides a text file, `lvl_<level>.txt` and a zip file `lvl_<level>.zip` containing the next Sudoku puzzle to solve. Once we have the correct sudoku values, we can use them as the password to extract the contents of the corresponding zip file for that level. The last zip file should contains `flag.txt`
 
+## Challenge example
+
+The `lvl_<level>.txt` contains a NxN regions matrix and the related constraints
+```
+a b b c c
+a d e e c
+f d g h h
+f g g g i
+j j k k i
+
+a 3 +
+b 10 *
+c 12 +
+d 7 +
+e 4 /
+f 15 *
+g 10 *
+h 1 -
+i 4 *
+j 9 +
+k 6 *
+```
+
+The solved grid is:
+```
+1 2 5 4 3
+2 3 4 1 5
+5 4 1 3 2
+3 1 2 5 4
+4 5 3 2 1
+```
+The solved grid, read by rows, gives you the password for the zip on next level.
+```
+Pasword: 1254323415541323125445321
+```
 ### Sudoku Constraints
 
 1. Each cell must contain an integer from 1 to N, where N is the size of the grid.
 2. No two cells in the same row or column can contain the same value.
-3. Certain regions in the grid are marked with letters (e.g., 'A', 'B', 'C'). These regions have specific constraints:
+3. These regions have specific constraints:
    - '+' indicates that the values in the region must sum up to a given constant.
    - '*' indicates that the values in the region must multiply to a given constant.
    - '-' indicates that the values in the region must be either x - y or y - x, where x and y are constants.
