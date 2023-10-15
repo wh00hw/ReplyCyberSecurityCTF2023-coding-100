@@ -4,9 +4,9 @@ In this challenge, we are given a series of zip files, each protected by a passw
 
 ## Problem Description
 
-The challenge consists of several levels, each of which provides a text file, `lvl_<level>.txt` and a zip file `lvl_<level>.zip` containing the next puzzle to solve. The puzzle is a grid of cells, and each cell contains a variable `n_<r>_<c>`, where `r` is the row index and `c` is the column index. The goal is to determine the values of these variables that satisfy certain constraints. Once we have the correct values, we can use them as the password to extract the contents of the corresponding zip file for that level. The last zip file should contains `flag.txt`
+The challenge consists of several levels, each of which provides a text file, `lvl_<level>.txt` and a zip file `lvl_<level>.zip` containing the next Sudoku puzzle to solve. The puzzle is a grid of cells, and each cell contains a variable `n_<r>_<c>`, where `r` is the row index and `c` is the column index. The goal is to determine the values of these variables that satisfy certain constraints. Once we have the correct sudoku values, we can use them as the password to extract the contents of the corresponding zip file for that level. The last zip file should contains `flag.txt`
 
-### Puzzle Constraints
+### Sudoku Constraints
 
 1. Each cell must contain an integer from 1 to N, where N is the size of the grid.
 2. No two cells in the same row or column can contain the same value.
@@ -60,7 +60,7 @@ By following this process, the solver systematically explores the search space o
 
 The solution involves using a constraint satisfaction problem solver to find a valid assignment of values to the variables. The code provided uses the `constraint` library to formulate and solve the problem. The process can be broken down as follows:
 
-1. Read the puzzle constraints from the text file for the current level.
+1. Read the sudoku constraints from the text file for the current level.
 2. Create variables for each cell in the grid and set their domains to integers from 1 to N.
 3. Add constraints to ensure that no two cells in the same row or column have the same value.
 4. For each region, add constraints based on the region's specified operation ('+', '*', '-', '/').
@@ -68,4 +68,4 @@ The solution involves using a constraint satisfaction problem solver to find a v
 6. Use the obtained values as a password to extract the contents of the corresponding zip file.
 7. If the extraction is successful, print the flag.
 
-The code `solver.py` iterates through each level, progressively solving more complex puzzles and extracting zip files until the flag is found.
+The code `solver.py` iterates through each level, progressively solving more complex sudoku and extracting zip files until the flag is found.
